@@ -77,7 +77,9 @@ namespace RestSharp.Tests
         [TestCase(" !\"#$%&'()*+,", 2048)]
         public void RsaSha1_Signs_Correctly(string value, int keySize)
         {
-            SHA1Managed hasher = new SHA1Managed();
+            //SHA1Managed hasher = new SHA1Managed();
+            //SHA1Cng hasher = new SHA1Cng();
+            SHA1CryptoServiceProvider hasher = new SHA1CryptoServiceProvider();
             byte[] hash = hasher.ComputeHash(value.GetBytes());
 
             using (var crypto = new RSACryptoServiceProvider(keySize) {PersistKeyInCsp = false})
